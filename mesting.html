@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CBLOCK2K // MESTING</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;700;900&family=Bebas+Neue&display=swap');
+:root{
+  --black:#06060a;--deep:#0b0b14;--purple:#5b2d9e;--purplo:#7b3fcf;
+  --blue:#2a1ab5;--bluelo:#4433d4;--violet:#9966ff;--glow:#c39fff;
+  --silver:#c8c4d8;--offwhite:#e2dff0;--mid:#4a4560;--dim:#1e1a2e;
+  /* mesting accent — slight warm shift within the palette */
+  --m-accent:#b06fff;--m-dim:#3a1e6e;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{background:var(--black);cursor:crosshair;}
+body{background:var(--black);color:var(--offwhite);font-family:'Share Tech Mono',monospace;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.12) 3px,rgba(0,0,0,0.12) 4px);pointer-events:none;z-index:9998;}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,0.75) 100%);pointer-events:none;z-index:9997;}
+
+/* HEADER */
+header{position:relative;background:linear-gradient(180deg,#0d0b1a 0%,var(--black) 100%);border-bottom:1px solid var(--purple);overflow:hidden;}
+header::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--violet),var(--bluelo),var(--violet),transparent);}
+.hi{display:flex;align-items:stretch;}
+.lb{padding:16px 22px 12px;border-right:1px solid var(--dim);display:flex;flex-direction:column;justify-content:center;min-width:200px;}
+.liw{display:flex;align-items:center;gap:12px;}
+.liw img{height:64px;width:auto;filter:drop-shadow(0 0 10px rgba(153,102,255,0.6));transition:filter .3s;}
+.liw img:hover{filter:drop-shadow(0 0 18px rgba(153,102,255,0.95));}
+.lt{display:flex;flex-direction:column;}
+.ln{font-family:'Bebas Neue',sans-serif;font-size:2.3rem;line-height:1;letter-spacing:.08em;color:var(--offwhite);text-shadow:0 0 18px rgba(153,102,255,.45);}
+.ln em{color:var(--violet);font-style:normal;}
+.ls{font-size:.44rem;letter-spacing:.3em;color:var(--mid);text-transform:uppercase;margin-top:3px;}
+.hm{margin-left:auto;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;padding:10px 18px;gap:5px;}
+.hd{font-size:.53rem;letter-spacing:.25em;color:var(--mid);text-transform:uppercase;}
+.hl{font-size:.53rem;letter-spacing:.2em;color:var(--violet);display:flex;align-items:center;gap:5px;}
+.dot{width:6px;height:6px;background:var(--violet);border-radius:50%;box-shadow:0 0 6px var(--violet);animation:pd 1.8s ease-in-out infinite;}
+@keyframes pd{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.6);}}
+nav{display:flex;border-top:1px solid var(--dim);overflow-x:auto;background:#080712;}
+nav::-webkit-scrollbar{display:none;}
+nav a{font-size:.57rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);text-decoration:none;padding:7px 15px;border-right:1px solid #110f1e;white-space:nowrap;transition:all .15s;position:relative;}
+nav a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--violet);transform:scaleX(0);transition:transform .2s;}
+nav a:hover{color:var(--glow);background:#0f0d1c;}
+nav a:hover::after,nav a.active::after{transform:scaleX(1);}
+nav a.active{color:var(--offwhite);background:#110f1e;}
+
+/* MARQUEE */
+.mw{background:linear-gradient(90deg,var(--blue),var(--purple),var(--purplo),var(--purple),var(--blue));border-bottom:1px solid #1a0f3a;overflow:hidden;padding:5px 0;}
+.mi{display:flex;animation:mq 28s linear infinite;width:max-content;}
+.mi span{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.85);padding:0 34px;white-space:nowrap;}
+.mi span::before{content:'✦ ';opacity:.5;}
+@keyframes mq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* LAYOUT */
+.sw{display:grid;grid-template-columns:148px 1fr 175px;min-height:calc(100vh - 130px);}
+.sl{border-right:1px solid var(--dim);background:var(--deep);}
+.sr{border-left:1px solid var(--dim);background:var(--deep);display:flex;flex-direction:column;}
+.ss{border-bottom:1px solid #110f1e;padding:14px 11px;}
+.lbl{display:block;font-size:.44rem;letter-spacing:.35em;color:var(--purple);text-transform:uppercase;margin-bottom:9px;}
+.slk{list-style:none;display:flex;flex-direction:column;gap:1px;}
+.slk a{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.06em;text-transform:uppercase;color:var(--silver);text-decoration:none;padding:3px 6px;border-left:2px solid transparent;transition:all .12s;}
+.slk a:hover{color:var(--glow);border-left-color:var(--violet);background:#0f0d1c;}
+.vol{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;line-height:1;color:#1a1630;}
+.vol span{display:block;font-family:'Share Tech Mono',monospace;font-size:.42rem;letter-spacing:.2em;color:var(--mid);margin-top:-4px;}
+.badge{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px;border-bottom:1px solid #110f1e;background:linear-gradient(160deg,#0e0b1c,#08071290);}
+.badge img{width:100%;max-width:140px;filter:drop-shadow(0 0 8px rgba(153,102,255,.5));animation:fb 4s ease-in-out infinite;}
+@keyframes fb{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+.bsub{font-size:.42rem;letter-spacing:.28em;color:var(--mid);text-transform:uppercase;}
+.tags{display:flex;flex-wrap:wrap;gap:4px;}
+.tag{font-size:.47rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);border:1px solid #1e1a2e;padding:2px 6px;cursor:default;transition:all .15s;}
+.tag:hover{color:var(--glow);border-color:var(--violet);background:#0f0d1c;}
+.tag.hot{color:var(--purplo);border-color:#2e1a5e;}
+.rlk{list-style:none;display:flex;flex-direction:column;gap:1px;}
+.rlk a{display:block;font-size:.62rem;letter-spacing:.12em;color:var(--mid);text-decoration:none;padding:3px 4px;transition:color .12s;}
+.rlk a:hover{color:var(--glow);}
+
+/* ═══ MESTING MAIN ═══ */
+.main{display:flex;flex-direction:column;background:var(--black);}
+.page-topbar{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:#08071280;border-bottom:1px solid var(--dim);}
+.page-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--m-accent);}
+.page-lbl::before{content:'▪ ';}
+.page-tag{font-size:.48rem;letter-spacing:.2em;color:#2a2440;text-transform:uppercase;}
+.vgl{height:3px;background:linear-gradient(90deg,transparent,var(--purple),var(--violet),var(--bluelo),var(--violet),var(--purple),transparent);opacity:.8;}
+
+/* HERO BANNER */
+.m-hero{
+  position:relative;
+  min-height:260px;
+  background:linear-gradient(135deg,#08060f 0%,#0e0920 40%,#150a30 70%,#0b0818 100%);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+  border-bottom:1px solid var(--m-dim);
+}
+/* animated background grid */
+.m-hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(var(--m-dim) 1px,transparent 1px),
+    linear-gradient(90deg,var(--m-dim) 1px,transparent 1px);
+  background-size:40px 40px;
+  opacity:.35;
+  animation:gridpan 20s linear infinite;
+}
+@keyframes gridpan{from{background-position:0 0;}to{background-position:40px 40px;}}
+
+/* radial glow center */
+.m-hero::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 55% 50%,rgba(176,111,255,.12) 0%,transparent 65%);
+  pointer-events:none;
+}
+
+.m-hero-content{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;align-items:center;
+  gap:16px;padding:36px 24px;text-align:center;
+}
+
+.m-badge-ring{
+  width:90px;height:90px;border-radius:50%;
+  border:1px solid var(--m-dim);
+  display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle,#14092a,#0a0716);
+  box-shadow:0 0 30px rgba(176,111,255,.2),inset 0 0 20px rgba(0,0,0,.5);
+  animation:ringpulse 3s ease-in-out infinite;
+  position:relative;
+}
+@keyframes ringpulse{
+  0%,100%{box-shadow:0 0 30px rgba(176,111,255,.2),inset 0 0 20px rgba(0,0,0,.5);}
+  50%{box-shadow:0 0 50px rgba(176,111,255,.4),inset 0 0 20px rgba(0,0,0,.5);}
+}
+.m-badge-ring::before{
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  border:1px solid transparent;
+  border-top-color:var(--m-accent);
+  animation:ringspin 4s linear infinite;
+}
+@keyframes ringspin{from{transform:rotate(0);}to{transform:rotate(360deg);}}
+.m-badge-ring::after{
+  content:'';position:absolute;inset:-8px;border-radius:50%;
+  border:1px solid transparent;
+  border-bottom-color:var(--violet);
+  animation:ringspin 7s linear infinite reverse;
+}
+.m-badge-letter{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:2.2rem;line-height:1;color:var(--offwhite);
+  text-shadow:0 0 20px rgba(176,111,255,.6);
+  letter-spacing:.05em;
+}
+
+.m-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.5rem,7vw,4.8rem);
+  letter-spacing:.12em;line-height:.9;
+  color:var(--offwhite);
+  text-shadow:0 0 40px rgba(176,111,255,.35),0 0 80px rgba(90,45,160,.2);
+}
+.m-title em{color:var(--m-accent);font-style:normal;}
+
+.m-tagline{
+  font-size:.6rem;letter-spacing:.35em;
+  text-transform:uppercase;color:var(--mid);
+}
+.m-tagline em{color:var(--violet);font-style:normal;}
+
+/* CTA BUTTON */
+.m-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Share Tech Mono',monospace;
+  font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--black);text-decoration:none;
+  background:var(--m-accent);
+  padding:12px 28px;
+  border:none;cursor:pointer;
+  position:relative;
+  transition:all .2s;
+  clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+}
+.m-cta::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,var(--violet),var(--m-accent));
+  opacity:0;transition:opacity .2s;
+}
+.m-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(176,111,255,.4);}
+.m-cta:hover::before{opacity:1;}
+.m-cta span{position:relative;z-index:1;}
+.m-cta-arrow{position:relative;z-index:1;font-size:.8rem;}
+
+/* DIVIDER */
+.m-divider{
+  height:1px;margin:0;
+  background:linear-gradient(90deg,transparent,var(--m-dim),transparent);
+}
+
+/* INFO GRID */
+.m-info{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:var(--dim);
+  border-top:1px solid var(--m-dim);
+  border-bottom:1px solid var(--m-dim);
+}
+.m-info-cell{
+  background:var(--black);padding:22px 20px;
+  position:relative;overflow:hidden;
+}
+.m-info-cell::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,var(--m-dim),transparent);
+}
+.m-info-label{
+  font-size:.45rem;letter-spacing:.4em;
+  text-transform:uppercase;color:var(--m-accent);
+  margin-bottom:8px;display:block;
+}
+.m-info-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.15rem;letter-spacing:.08em;
+  color:var(--offwhite);margin-bottom:6px;line-height:1;
+}
+.m-info-body{
+  font-size:.6rem;line-height:1.8;
+  color:var(--mid);letter-spacing:.04em;
+}
+.m-info-body em{color:var(--violet);font-style:normal;}
+
+/* COLLECTION PREVIEW — placeholder slots */
+.m-collection{padding:20px 16px;}
+.m-col-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:14px;
+}
+.m-col-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.1rem;letter-spacing:.15em;color:var(--silver);
+}
+.m-col-link{
+  font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--violet);text-decoration:none;transition:color .15s;
+}
+.m-col-link:hover{color:var(--glow);}
+
+.m-col-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(100px,1fr));
+  gap:4px;
+}
+.m-col-item{
+  aspect-ratio:3/4;
+  background:linear-gradient(135deg,#0d0a1a,#110d22);
+  border:1px solid #1a1535;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  padding:8px 6px;
+  position:relative;overflow:hidden;
+  cursor:pointer;transition:all .2s;
+}
+.m-col-item:hover{border-color:var(--m-dim);background:linear-gradient(135deg,#130f20,#180f2e);}
+.m-col-item::before{
+  content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:30px;height:30px;border-radius:50%;
+  background:radial-gradient(circle,rgba(176,111,255,.08),transparent);
+}
+.m-col-icon{font-size:1.4rem;opacity:.08;position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);}
+.m-col-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#2a2440;position:relative;z-index:1;}
+.m-col-price{font-size:.45rem;letter-spacing:.15em;color:#1e1a2e;margin-top:2px;position:relative;z-index:1;}
+
+/* FOOTER CTA */
+.m-footer-cta{
+  padding:28px 20px;
+  background:linear-gradient(135deg,#0a0816,#0e0b1e);
+  border-top:1px solid var(--m-dim);
+  display:flex;flex-direction:column;align-items:center;
+  gap:14px;text-align:center;
+}
+.m-fc-text{
+  font-size:.6rem;letter-spacing:.2em;color:var(--mid);
+  text-transform:uppercase;max-width:360px;line-height:1.9;
+}
+.m-fc-text em{color:var(--offwhite);font-style:normal;}
+.m-fc-note{font-size:.48rem;letter-spacing:.15em;color:#2a2440;text-transform:uppercase;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--purple);background:#06060e;display:flex;align-items:center;justify-content:space-between;padding:10px 20px;flex-wrap:wrap;gap:8px;position:relative;}
+footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--violet),var(--bluelo),var(--violet),transparent);}
+.fl{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.1em;color:#1e1a2e;}
+.fl em{color:var(--purplo);font-style:normal;}
+.fc{font-size:.45rem;letter-spacing:.2em;color:#1a1630;text-transform:uppercase;}
+.fls{display:flex;gap:14px;}
+.fls a{font-size:.45rem;letter-spacing:.2em;text-transform:uppercase;color:#252040;text-decoration:none;}
+.fls a:hover{color:var(--violet);}
+
+@media(max-width:680px){
+  .sw{grid-template-columns:1fr;}
+  .sl,.sr{display:none;}
+  .liw img{height:48px;}
+  .m-info{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hi">
+    <div class="lb">
+      <div class="liw">
+        <a href="index.html"><img src="cblock2026.jpg" alt="CBLOCK2K"></a>
+        <div class="lt">
+          <span class="ln">CB<em>LO</em>CK<em>2</em>K</span>
+          <span class="ls">// skate · trap · rua · moda · digital</span>
+        </div>
+      </div>
+    </div>
+    <div class="hm">
+      <span class="hd" id="live-date">--.--.----</span>
+      <span class="hl"><span class="dot"></span>ONLINE</span>
+    </div>
+  </div>
+  <nav>
+    <a href="index.html">VIDEO</a>
+    <a href="fotos.html">FOTOS</a>
+    <a href="mesting.html" class="active">MESTING</a>
+    <a href="#">SKATE</a>
+    <a href="#">MODA</a>
+    <a href="#">RAP</a>
+    <a href="#">RUA</a>
+    <a href="#">DIGITAL</a>
+    <a href="#">SOBRE</a>
+  </nav>
+</header>
+
+<div class="mw">
+  <div class="mi">
+    <span>MESTING // MARCA OFICIAL</span><span>CBLOCK2K PARCEIRO</span>
+    <span>ROUPA DE RUA</span><span>STREETWEAR</span><span>NOVA COLEÇÃO</span>
+    <span>MESTING // MARCA OFICIAL</span><span>CBLOCK2K PARCEIRO</span>
+    <span>ROUPA DE RUA</span><span>STREETWEAR</span><span>NOVA COLEÇÃO</span>
+  </div>
+</div>
+
+<div class="sw">
+  <aside class="sl">
+    <div class="ss">
+      <span class="lbl">Canais</span>
+      <ul class="slk">
+        <li><a href="index.html">Video</a></li>
+        <li><a href="fotos.html">Fotos</a></li>
+        <li><a href="#">Skate</a></li>
+        <li><a href="#">Rap</a></li>
+        <li><a href="#">Rua</a></li>
+        <li><a href="#">Digital</a></li>
+      </ul>
+    </div>
+    <div class="ss">
+      <span class="lbl">Parceiro</span>
+      <div class="vol">MST<span>MESTING // 2K26</span></div>
+    </div>
+    <div class="ss">
+      <span class="lbl">Links</span>
+      <ul class="slk">
+        <li><a href="#">YouTube</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">TikTok</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="page-topbar">
+      <span class="page-lbl">Mesting // Marca Parceira</span>
+      <span class="page-tag">CBLOCK2K // EXTENSÃO</span>
+    </div>
+    <div class="vgl"></div>
+
+    <!-- HERO -->
+    <div class="m-hero">
+      <div class="m-hero-content">
+        <div class="m-badge-ring">
+          <span class="m-badge-letter">M</span>
+        </div>
+        <h1 class="m-title">MES<em>TING</em></h1>
+        <p class="m-tagline">Streetwear // <em>Marca parceira CBLOCK2K</em></p>
+
+        <!--
+          ══════════════════════════════════
+          COLOCA O LINK DO SITE DA MESTING AQUI:
+          Substitui href="#" pelo URL real
+          ══════════════════════════════════
+        -->
+        <a href="#" target="_blank" rel="noopener" class="m-cta">
+          <span>Visitar loja oficial</span>
+          <span class="m-cta-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- INFO GRID -->
+    <div class="m-info">
+      <div class="m-info-cell">
+        <span class="m-info-label">Sobre a marca</span>
+        <div class="m-info-title">MESTING</div>
+        <p class="m-info-body">
+          Streetwear da rua, para a rua. A <em>Mesting</em> nasce do mesmo universo que a CBLOCK2K — cultura do skate, trap, câmeras e identidade visual digital. Peças com alma, feitas pra quem vive o movimento.
+        </p>
+      </div>
+      <div class="m-info-cell">
+        <span class="m-info-label">Parceria</span>
+        <div class="m-info-title">CBLOCK2K × MESTING</div>
+        <p class="m-info-body">
+          A Mesting é parceira oficial da <em>CBLOCK2K magazine</em>. Os mundos da roupa e da cultura underground encontram-se aqui. Segue ambos os projetos para não perder drops, colabs e novidades.
+        </p>
+      </div>
+    </div>
+
+    <!-- COLLECTION PREVIEW SLOTS -->
+    <div class="m-collection">
+      <div class="m-col-header">
+        <span class="m-col-title">Coleção // Preview</span>
+        <!--
+          COLOCA O LINK DA LOJA AQUI TAMBÉM:
+        -->
+        <a href="#" target="_blank" rel="noopener" class="m-col-link">Ver tudo na loja →</a>
+      </div>
+      <div class="m-col-grid">
+        <!--
+          ══════════════════════════════════════
+          COMO ADICIONAR PRODUTOS:
+          Substitui os placeholders por:
+          <div class="m-col-item">
+            <img src="produto.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.6;">
+            <span class="m-col-name">NOME</span>
+            <span class="m-col-price">€XX</span>
+          </div>
+          ══════════════════════════════════════
+        -->
+        <div class="m-col-item"><span class="m-col-icon">◈</span><span class="m-col-name">ITEM 01</span><span class="m-col-price">EM BREVE</span></div>
+        <div class="m-col-item"><span class="m-col-icon">◈</span><span class="m-col-name">ITEM 02</span><span class="m-col-price">EM BREVE</span></div>
+        <div class="m-col-item"><span class="m-col-icon">◈</span><span class="m-col-name">ITEM 03</span><span class="m-col-price">EM BREVE</span></div>
+        <div class="m-col-item"><span class="m-col-icon">◈</span><span class="m-col-name">ITEM 04</span><span class="m-col-price">EM BREVE</span></div>
+        <div class="m-col-item"><span class="m-col-icon">◈</span><span class="m-col-name">ITEM 05</span><span class="m-col-price">EM BREVE</span></div>
+      </div>
+    </div>
+
+    <!-- FOOTER CTA -->
+    <div class="m-footer-cta">
+      <p class="m-fc-text">A loja <em>Mesting</em> está disponível no site oficial da marca. Clica no botão para seres redirecionado para a loja completa com todos os produtos disponíveis.</p>
+      <a href="#" target="_blank" rel="noopener" class="m-cta">
+        <span>Ir para mesting.com</span>
+        <span class="m-cta-arrow">↗</span>
+      </a>
+      <span class="m-fc-note">// link externo — sai da CBLOCK2K</span>
+    </div>
+
+  </main>
+
+  <aside class="sr">
+    <div class="badge">
+      <img src="cblock2026.jpg" alt="CBLOCK2K">
+      <span class="bsub">// parceiro oficial</span>
+    </div>
+    <div class="ss">
+      <span class="lbl">Tags</span>
+      <div class="tags">
+        <span class="tag hot">Mesting</span><span class="tag hot">Streetwear</span>
+        <span class="tag">Drop</span><span class="tag hot">Roupa</span>
+        <span class="tag">Look</span><span class="tag">Collab</span>
+        <span class="tag hot">Parceiro</span><span class="tag">Fit</span>
+        <span class="tag">Limited</span>
+      </div>
+    </div>
+    <div class="ss">
+      <span class="lbl">Mesting</span>
+      <ul class="rlk">
+        <!-- TROCA # pelo link real da Mesting -->
+        <li><a href="#" target="_blank">Loja oficial ↗</a></li>
+        <li><a href="#" target="_blank">Instagram ↗</a></li>
+        <li><a href="#" target="_blank">TikTok ↗</a></li>
+      </ul>
+    </div>
+    <div class="ss">
+      <span class="lbl">CBlock2K</span>
+      <ul class="rlk">
+        <li><a href="#">@cblock2k</a></li>
+        <li><a href="#">YouTube</a></li>
+        <li><a href="#">Instagram</a></li>
+      </ul>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <div class="fl">CB<em>LOCK</em>2K</div>
+  <div class="fc">© 2026 CBLOCK2K // TODOS OS DIREITOS RESERVADOS</div>
+  <div class="fls"><a href="#">CONTATO</a><a href="#">PRIVACIDADE</a><a href="#">SOBRE</a></div>
+</footer>
+
+<script>
+(function(){const d=new Date(),p=n=>String(n).padStart(2,'0');document.getElementById('live-date').textContent=`${p(d.getDate())}.${p(d.getMonth()+1)}.${d.getFullYear()}`;})();
+</script>
+</body>
+</html>

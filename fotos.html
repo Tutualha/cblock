@@ -3,84 +3,300 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CBLOCK2K // MAGAZINE</title>
-<link rel="stylesheet" href="styles.css">
+<title>CBLOCK2K // FOTOS</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;700;900&family=Bebas+Neue&display=swap');
+:root{
+  --black:#06060a;--deep:#0b0b14;--purple:#5b2d9e;--purplo:#7b3fcf;
+  --blue:#2a1ab5;--bluelo:#4433d4;--violet:#9966ff;--glow:#c39fff;
+  --silver:#c8c4d8;--offwhite:#e2dff0;--mid:#4a4560;--dim:#1e1a2e;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{background:var(--black);cursor:crosshair;}
+body{background:var(--black);color:var(--offwhite);font-family:'Share Tech Mono',monospace;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.12) 3px,rgba(0,0,0,0.12) 4px);pointer-events:none;z-index:9998;}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,0.75) 100%);pointer-events:none;z-index:9997;}
+
+/* HEADER */
+header{position:relative;background:linear-gradient(180deg,#0d0b1a 0%,var(--black) 100%);border-bottom:1px solid var(--purple);overflow:hidden;}
+header::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--violet),var(--bluelo),var(--violet),transparent);}
+.hi{display:flex;align-items:stretch;}
+.lb{padding:16px 22px 12px;border-right:1px solid var(--dim);display:flex;flex-direction:column;justify-content:center;min-width:200px;}
+.liw{display:flex;align-items:center;gap:12px;}
+.liw img{height:64px;width:auto;filter:drop-shadow(0 0 10px rgba(153,102,255,0.6));transition:filter .3s;}
+.liw img:hover{filter:drop-shadow(0 0 18px rgba(153,102,255,0.95));}
+.lt{display:flex;flex-direction:column;}
+.ln{font-family:'Bebas Neue',sans-serif;font-size:2.3rem;line-height:1;letter-spacing:.08em;color:var(--offwhite);text-shadow:0 0 18px rgba(153,102,255,.45);}
+.ln em{color:var(--violet);font-style:normal;}
+.ls{font-size:.44rem;letter-spacing:.3em;color:var(--mid);text-transform:uppercase;margin-top:3px;}
+.hm{margin-left:auto;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;padding:10px 18px;gap:5px;}
+.hd{font-size:.53rem;letter-spacing:.25em;color:var(--mid);text-transform:uppercase;}
+.hl{font-size:.53rem;letter-spacing:.2em;color:var(--violet);display:flex;align-items:center;gap:5px;}
+.dot{width:6px;height:6px;background:var(--violet);border-radius:50%;box-shadow:0 0 6px var(--violet);animation:pd 1.8s ease-in-out infinite;}
+@keyframes pd{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.6);}}
+nav{display:flex;border-top:1px solid var(--dim);overflow-x:auto;background:#080712;}
+nav::-webkit-scrollbar{display:none;}
+nav a{font-size:.57rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);text-decoration:none;padding:7px 15px;border-right:1px solid #110f1e;white-space:nowrap;transition:all .15s;position:relative;}
+nav a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--violet);transform:scaleX(0);transition:transform .2s;}
+nav a:hover{color:var(--glow);background:#0f0d1c;}
+nav a:hover::after,nav a.active::after{transform:scaleX(1);}
+nav a.active{color:var(--offwhite);background:#110f1e;}
+
+/* MARQUEE */
+.mw{background:linear-gradient(90deg,var(--blue),var(--purple),var(--purplo),var(--purple),var(--blue));border-bottom:1px solid #1a0f3a;overflow:hidden;padding:5px 0;}
+.mi{display:flex;animation:mq 28s linear infinite;width:max-content;}
+.mi span{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.85);padding:0 34px;white-space:nowrap;}
+.mi span::before{content:'✦ ';opacity:.5;}
+@keyframes mq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* LAYOUT */
+.sw{display:grid;grid-template-columns:148px 1fr 175px;min-height:calc(100vh - 130px);}
+.sl{border-right:1px solid var(--dim);background:var(--deep);}
+.sr{border-left:1px solid var(--dim);background:var(--deep);display:flex;flex-direction:column;}
+.ss{border-bottom:1px solid #110f1e;padding:14px 11px;}
+.lbl{display:block;font-size:.44rem;letter-spacing:.35em;color:var(--purple);text-transform:uppercase;margin-bottom:9px;}
+.slk{list-style:none;display:flex;flex-direction:column;gap:1px;}
+.slk a{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.06em;text-transform:uppercase;color:var(--silver);text-decoration:none;padding:3px 6px;border-left:2px solid transparent;transition:all .12s;}
+.slk a:hover{color:var(--glow);border-left-color:var(--violet);background:#0f0d1c;}
+.vol{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;line-height:1;color:#1a1630;}
+.vol span{display:block;font-family:'Share Tech Mono',monospace;font-size:.42rem;letter-spacing:.2em;color:var(--mid);margin-top:-4px;}
+.badge{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px;border-bottom:1px solid #110f1e;background:linear-gradient(160deg,#0e0b1c,#08071290);}
+.badge img{width:100%;max-width:140px;filter:drop-shadow(0 0 8px rgba(153,102,255,.5));animation:fb 4s ease-in-out infinite;}
+@keyframes fb{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+.bsub{font-size:.42rem;letter-spacing:.28em;color:var(--mid);text-transform:uppercase;}
+.tags{display:flex;flex-wrap:wrap;gap:4px;}
+.tag{font-size:.47rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);border:1px solid #1e1a2e;padding:2px 6px;cursor:default;transition:all .15s;}
+.tag:hover{color:var(--glow);border-color:var(--violet);background:#0f0d1c;}
+.tag.hot{color:var(--purplo);border-color:#2e1a5e;}
+.rlk{list-style:none;display:flex;flex-direction:column;gap:1px;}
+.rlk a{display:block;font-size:.62rem;letter-spacing:.12em;color:var(--mid);text-decoration:none;padding:3px 4px;transition:color .12s;}
+.rlk a:hover{color:var(--glow);}
+
+/* ═══ FOTOS MAIN ═══ */
+.main{display:flex;flex-direction:column;background:var(--black);}
+
+.page-topbar{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:#08071280;border-bottom:1px solid var(--dim);}
+.page-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--violet);}
+.page-lbl::before{content:'◈ ';}
+.page-tag{font-size:.48rem;letter-spacing:.2em;color:#2a2440;text-transform:uppercase;}
+
+/* CATEGORY FILTER */
+.cat-bar{display:flex;gap:0;padding:10px 16px;border-bottom:1px solid var(--dim);background:#08070f;flex-wrap:wrap;gap:6px;}
+.cat-btn{font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);border:1px solid #1e1a2e;padding:4px 12px;cursor:pointer;background:transparent;transition:all .15s;font-family:'Share Tech Mono',monospace;}
+.cat-btn:hover{color:var(--glow);border-color:var(--violet);background:#0f0d1c;}
+.cat-btn.active{color:var(--black);background:var(--violet);border-color:var(--violet);}
+
+/* PHOTO GRID */
+.photo-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:3px;
+  padding:12px;
+  background:var(--black);
+}
+
+.photo-item{
+  position:relative;
+  aspect-ratio:1;
+  overflow:hidden;
+  cursor:pointer;
+  background:#0c0a18;
+  border:1px solid #110f1e;
+}
+
+/* placeholder card when no real image */
+.photo-item .ph{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:8px;
+  background:linear-gradient(135deg,#0c0a18,#0f0d1e);
+  transition:all .2s;
+}
+.photo-item:hover .ph{background:linear-gradient(135deg,#150f28,#1a1535);}
+.ph-icon{font-size:1.6rem;opacity:.15;}
+.ph-num{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:#2a2440;line-height:1;}
+.ph-cat{font-size:.42rem;letter-spacing:.25em;text-transform:uppercase;color:#2a2440;}
+
+/* real image inside item */
+.photo-item img{
+  width:100%;height:100%;object-fit:cover;
+  display:block;
+  transition:transform .35s ease,filter .35s ease;
+  filter:saturate(.7) brightness(.85);
+}
+.photo-item:hover img{transform:scale(1.06);filter:saturate(1) brightness(1);}
+
+/* overlay on hover */
+.photo-item .ov{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 50%,rgba(6,6,10,.9) 100%);
+  opacity:0;transition:opacity .25s;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:8px;
+}
+.photo-item:hover .ov{opacity:1;}
+.ov-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--offwhite);line-height:1.1;}
+.ov-cat{font-size:.42rem;letter-spacing:.2em;color:var(--violet);text-transform:uppercase;margin-top:2px;}
+
+/* corner bracket on hover */
+.photo-item::before,.photo-item::after{
+  content:'';position:absolute;width:14px;height:14px;z-index:3;
+  opacity:0;transition:opacity .2s;pointer-events:none;
+}
+.photo-item::before{top:5px;left:5px;border-top:1px solid var(--violet);border-left:1px solid var(--violet);}
+.photo-item::after{bottom:5px;right:5px;border-bottom:1px solid var(--violet);border-right:1px solid var(--violet);}
+.photo-item:hover::before,.photo-item:hover::after{opacity:1;}
+
+/* ADD PHOTO BUTTON */
+.add-photo{
+  aspect-ratio:1;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  border:1px dashed #1e1a2e;background:transparent;cursor:pointer;transition:all .2s;
+}
+.add-photo:hover{border-color:var(--violet);background:#0a091a;}
+.add-photo span:first-child{font-size:1.4rem;color:#1e1a2e;}
+.add-photo .add-lbl{font-size:.45rem;letter-spacing:.25em;text-transform:uppercase;color:#1e1a2e;}
+.add-photo:hover span,.add-photo:hover .add-lbl{color:var(--mid);}
+
+/* ═══ LIGHTBOX ═══ */
+.lb-overlay{
+  position:fixed;inset:0;background:rgba(6,6,10,.96);
+  z-index:10000;display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .25s;
+  backdrop-filter:blur(6px);
+}
+.lb-overlay.open{opacity:1;pointer-events:all;}
+.lb-inner{
+  position:relative;max-width:90vw;max-height:90vh;
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+}
+.lb-img-wrap{
+  position:relative;
+  max-width:80vw;max-height:75vh;
+  border:1px solid var(--dim);
+}
+/* corner brackets lightbox */
+.lb-img-wrap::before,.lb-img-wrap::after{
+  content:'';position:absolute;width:20px;height:20px;z-index:2;pointer-events:none;
+}
+.lb-img-wrap::before{top:6px;left:6px;border-top:2px solid var(--violet);border-left:2px solid var(--violet);}
+.lb-img-wrap::after{bottom:6px;right:6px;border-bottom:2px solid var(--violet);border-right:2px solid var(--violet);}
+.lb-img-wrap img{display:block;max-width:80vw;max-height:75vh;object-fit:contain;filter:saturate(.85);}
+/* placeholder in lightbox */
+.lb-ph{
+  width:60vw;max-width:560px;height:40vh;
+  background:linear-gradient(135deg,#0c0a18,#0f0d1e);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:12px;
+}
+.lb-ph-num{font-family:'Bebas Neue',sans-serif;font-size:4rem;color:#1e1a2e;}
+.lb-ph-lbl{font-size:.55rem;letter-spacing:.3em;color:#2a2440;text-transform:uppercase;}
+
+.lb-caption{text-align:center;}
+.lb-caption h3{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.1em;color:var(--offwhite);}
+.lb-caption p{font-size:.52rem;letter-spacing:.2em;color:var(--violet);text-transform:uppercase;margin-top:2px;}
+
+.lb-close{
+  position:fixed;top:20px;right:24px;
+  font-size:1.4rem;color:var(--mid);cursor:pointer;
+  transition:color .15s;z-index:10001;
+  font-family:'Share Tech Mono',monospace;
+  background:none;border:none;
+}
+.lb-close:hover{color:var(--glow);}
+
+.lb-nav{display:flex;gap:16px;margin-top:4px;}
+.lb-btn{
+  font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--mid);border:1px solid #1e1a2e;padding:6px 18px;
+  cursor:pointer;background:transparent;transition:all .15s;
+  font-family:'Share Tech Mono',monospace;
+}
+.lb-btn:hover{color:var(--glow);border-color:var(--violet);background:#0f0d1c;}
+
+/* glow line */
+.vgl{height:3px;background:linear-gradient(90deg,transparent,var(--purple),var(--violet),var(--bluelo),var(--violet),var(--purple),transparent);opacity:.8;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--purple);background:#06060e;display:flex;align-items:center;justify-content:space-between;padding:10px 20px;flex-wrap:wrap;gap:8px;position:relative;}
+footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--violet),var(--bluelo),var(--violet),transparent);}
+.fl{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.1em;color:#1e1a2e;}
+.fl em{color:var(--purplo);font-style:normal;}
+.fc{font-size:.45rem;letter-spacing:.2em;color:#1a1630;text-transform:uppercase;}
+.fls{display:flex;gap:14px;}
+.fls a{font-size:.45rem;letter-spacing:.2em;text-transform:uppercase;color:#252040;text-decoration:none;}
+.fls a:hover{color:var(--violet);}
+
+@media(max-width:680px){
+  .sw{grid-template-columns:1fr;}
+  .sl,.sr{display:none;}
+  .liw img{height:48px;}
+  .photo-grid{grid-template-columns:repeat(2,1fr);}
+}
+</style>
 </head>
 <body>
 
-<!-- ======= HEADER ======= -->
 <header>
-  <div class="header-top">
-    <div class="logo-block">
-      <span class="logo-main">CB<span>LO</span>CK<span>2</span>K</span>
-      <span class="logo-sub">// skate · traphouse · rua · moda · digital</span>
+  <div class="hi">
+    <div class="lb">
+      <div class="liw">
+        <a href="index.html"><img src="cblock2026.jpg" alt="CBLOCK2K"></a>
+        <div class="lt">
+          <span class="ln">CB<em>LO</em>CK<em>2</em>K</span>
+          <span class="ls">// skate · trap · rua · moda · digital</span>
+        </div>
+      </div>
     </div>
-    <div style="flex:1;"></div>
-    <div class="header-info">
-      <span class="header-date" id="live-date">--.--.----</span>
-      <span class="header-ticker"><span class="status-dot"></span>ONLINE</span>
+    <div class="hm">
+      <span class="hd" id="live-date">--.--.----</span>
+      <span class="hl"><span class="dot"></span>ONLINE</span>
     </div>
   </div>
   <nav>
     <a href="index.html">VIDEO</a>
+    <a href="fotos.html" class="active">FOTOS</a>
+    <a href="mesting.html">MESTING</a>
     <a href="#">SKATE</a>
     <a href="#">MODA</a>
-    <a href="https://mesting.lojavirtualnuvem.com.br/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGn5dJSmuR6awtHMeESUW3g7dgB8pqEalJ93u6-p2JCJS7vh1YFJ1fwPTnueKM_aem_OX5xo-ZHTeaxy3-Dq21R5A" target="_blank">Mesting</a>
     <a href="#">RAP</a>
-    <a href="fotos.html" class="active">FOTOS</a>
     <a href="#">RUA</a>
     <a href="#">DIGITAL</a>
     <a href="#">SOBRE</a>
   </nav>
 </header>
 
-<!-- ======= MARQUEE ======= -->
-<div class="marquee-wrap">
-  <div class="marquee-inner">
-    <span>CBLOCK2K MAGAZINE</span>
-    <span>SKATE CULTURA RUA</span>
-    <span>TRAP NACIONAL</span>
-    <span>DIGITAL CORE</span>
-    <span>NOVA DROP</span>
-    <span>CÂMERA VHS</span>
-    <span>UNDERGROUND</span>
-    <span>CBLOCK2K MAGAZINE</span>
-    <span>SKATE CULTURA RUA</span>
-    <span>TRAP NACIONAL</span>
-    <span>DIGITAL CORE</span>
-    <span>NOVA DROP</span>
-    <span>CÂMERA VHS</span>
-    <span>UNDERGROUND</span>
+<div class="mw">
+  <div class="mi">
+    <span>CBLOCK2K FOTOS</span><span>ARQUIVO VISUAL</span><span>SKATE CULTURA RUA</span>
+    <span>CÂMERA VHS</span><span>DIGITAL CORE</span><span>UNDERGROUND</span>
+    <span>CBLOCK2K FOTOS</span><span>ARQUIVO VISUAL</span><span>SKATE CULTURA RUA</span>
+    <span>CÂMERA VHS</span><span>DIGITAL CORE</span><span>UNDERGROUND</span>
   </div>
 </div>
 
-<!-- ======= SITE WRAPPER ======= -->
-<div class="site-wrapper">
-
-  <!-- LEFT SIDEBAR -->
-  <aside class="sidebar-left">
-    <div class="sidebar-section">
-      <span class="sidebar-label">Canais</span>
-      <ul class="sidebar-links">
+<div class="sw">
+  <aside class="sl">
+    <div class="ss">
+      <span class="lbl">Canais</span>
+      <ul class="slk">
+        <li><a href="index.html">Video</a></li>
         <li><a href="#">Skate</a></li>
         <li><a href="#">Moda</a></li>
-        <li><a href="https://mesting.lojavirtualnuvem.com.br/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGn5dJSmuR6awtHMeESUW3g7dgB8pqEalJ93u6-p2JCJS7vh1YFJ1fwPTnueKM_aem_OX5xo-ZHTeaxy3-Dq21R5A" target="_blank">Mesting</a></li>
         <li><a href="#">Rap</a></li>
         <li><a href="#">Rua</a></li>
-        <li><a href="index.html" target="_parent">Cblock2K</a></li>
+        <li><a href="fotos.html">Fotos</a></li>
         <li><a href="#">Digital</a></li>
       </ul>
     </div>
-    <div class="sidebar-section">
-      <span class="sidebar-label">Edição</span>
-      <div class="sidebar-counter">
-        01
-        <span>VOL. I // 2K25</span>
-      </div>
+    <div class="ss">
+      <span class="lbl">Arquivo</span>
+      <div class="vol" id="photo-count">00<span>FOTOS // 2K26</span></div>
     </div>
-    <div class="sidebar-section">
-      <span class="sidebar-label">Plataformas</span>
-      <ul class="sidebar-links">
+    <div class="ss">
+      <span class="lbl">Links</span>
+      <ul class="slk">
         <li><a href="#">YouTube</a></li>
         <li><a href="#">Instagram</a></li>
         <li><a href="#">TikTok</a></li>
@@ -88,274 +304,224 @@
     </div>
   </aside>
 
-  <!-- MAIN VIDEO CONTENT -->
-  <main class="main-content">
-
-    <div class="video-header">
-      <span class="video-label">FOTOS</span>
-      <span class="video-tag">EXCLUSIVO // CBLOCK2K</span>
+  <main class="main">
+    <div class="page-topbar">
+      <span class="page-lbl">Arquivo de Fotos</span>
+      <span class="page-tag">CBLOCK2K // GALERIA</span>
     </div>
 
-    <div class="video-zone">
-      <div class="video-frame">
+    <div class="vgl"></div>
 
-
-      </div>
+    <!-- CATEGORY FILTER -->
+    <div class="cat-bar">
+      <button class="cat-btn active" data-cat="all">Todas</button>
+      <button class="cat-btn" data-cat="skate">Skate</button>
+      <button class="cat-btn" data-cat="moda">Moda</button>
+      <button class="cat-btn" data-cat="rua">Rua</button>
+      <button class="cat-btn" data-cat="digital">Digital</button>
+      <button class="cat-btn" data-cat="misc">Misc</button>
     </div>
 
-    <div class="video-info">
-      <!--
-        TROCA O TÍTULO AQUI:
-      -->
-      <h1 class="video-title" id="video-title">Kader Sylla</h1>
-      <div class="video-meta">
-        <span class="video-meta-item highlight" id="video-date">DATA // 2025</span>
-        <span class="video-meta-item">CBLOCK2K MAGAZINE</span>
-        <span class="video-meta-item" id="video-tag-label">SKATE · TRAPHOUSE · RUA</span>
-      </div>
-    </div>
-
+    <!-- PHOTO GRID — adiciona as tuas fotos aqui -->
     <!--
-      TROCA A DESCRIÇÃO AQUI:
-    -->
-    <p class="video-desc" id="video-desc">
-      Skater: Kader Sylla
-Filmed By: Tristan Warren.
-    </p>
+    ══════════════════════════════════════════════════════
+    COMO ADICIONAR FOTOS:
+    Copia o bloco abaixo e substitui:
+      - src="tua-foto.jpg"
+      - data-cat="skate" (ou moda / rua / digital / misc)
+      - data-title="Nome da foto"
+      - data-sub="Descrição curta"
 
-    <!-- ANIMATED VISUAL STRIP -->
-    <div class="visual-strip">
-      <canvas id="viz-canvas"></canvas>
-      <span class="strip-label">CBLOCK2K // SIGNAL</span>
+    <div class="photo-item" data-cat="skate" data-title="NOME" data-sub="DESC" onclick="openLB(this)">
+      <img src="tua-foto.jpg" alt="NOME">
+      <div class="ov"><div class="ov-title">NOME</div><div class="ov-cat">SKATE</div></div>
     </div>
+    ══════════════════════════════════════════════════════
+    -->
+    <div class="photo-grid" id="grid">
 
+      <!-- PLACEHOLDERS — substitui por fotos reais -->
+      <div class="photo-item" data-cat="skate" data-title="SKATE 001" data-sub="RUA // 2025" onclick="openLB(this)">
+        <div class="ph"><span class="ph-icon">◈</span><div class="ph-num">01</div><div class="ph-cat">Skate</div></div>
+        <div class="ov"><div class="ov-title">SKATE 001</div><div class="ov-cat">SKATE</div></div>
+      </div>
+
+      <div class="photo-item" data-cat="moda" data-title="MODA 001" data-sub="LOOK // 2025" onclick="openLB(this)">
+        <div class="ph"><span class="ph-icon">◈</span><div class="ph-num">02</div><div class="ph-cat">Moda</div></div>
+        <div class="ov"><div class="ov-title">MODA 001</div><div class="ov-cat">MODA</div></div>
+      </div>
+
+      <div class="photo-item" data-cat="rua" data-title="RUA 001" data-sub="STREET // 2025" onclick="openLB(this)">
+        <div class="ph"><span class="ph-icon">◈</span><div class="ph-num">03</div><div class="ph-cat">Rua</div></div>
+        <div class="ov"><div class="ov-title">RUA 001</div><div class="ov-cat">RUA</div></div>
+      </div>
+
+      <div class="photo-item" data-cat="digital" data-title="DIGITAL 001" data-sub="CORE // 2025" onclick="openLB(this)">
+        <div class="ph"><span class="ph-icon">◈</span><div class="ph-num">04</div><div class="ph-cat">Digital</div></div>
+        <div class="ov"><div class="ov-title">DIGITAL 001</div><div class="ov-cat">DIGITAL</div></div>
+      </div>
+
+      <div class="photo-item" data-cat="skate" data-title="SKATE 002" data-sub="TRICK // 2025" onclick="openLB(this)">
+        <div class="ph"><span class="ph-icon">◈</span><div class="ph-num">05</div><div class="ph-cat">Skate</div></div>
+        <div class="ov"><div class="ov-title">SKATE 002</div><div class="ov-cat">SKATE</div></div>
+      </div>
+
+      <div class="photo-item" data-cat="misc" data-title="MISC 001" data-sub="ARQUIVO // 2025" onclick="openLB(this)">
+        <div class="ph"><span class="ph-icon">◈</span><div class="ph-num">06</div><div class="ph-cat">Misc</div></div>
+        <div class="ov"><div class="ov-title">MISC 001</div><div class="ov-cat">MISC</div></div>
+      </div>
+
+      <div class="photo-item" data-cat="rua" data-title="RUA 002" data-sub="NOITE // 2025" onclick="openLB(this)">
+        <div class="ph"><span class="ph-icon">◈</span><div class="ph-num">07</div><div class="ph-cat">Rua</div></div>
+        <div class="ov"><div class="ov-title">RUA 002</div><div class="ov-cat">RUA</div></div>
+      </div>
+
+      <div class="photo-item" data-cat="moda" data-title="MODA 002" data-sub="FIT // 2025" onclick="openLB(this)">
+        <div class="ph"><span class="ph-icon">◈</span><div class="ph-num">08</div><div class="ph-cat">Moda</div></div>
+        <div class="ov"><div class="ov-title">MODA 002</div><div class="ov-cat">MODA</div></div>
+      </div>
+
+      <!-- BOTÃO ADICIONAR (decorativo / referência visual) -->
+      <div class="add-photo">
+        <span>+</span>
+        <span class="add-lbl">Add foto</span>
+      </div>
+
+    </div>
   </main>
 
-  <!-- RIGHT SIDEBAR -->
-  <aside class="sidebar-right">
-
-    <div class="sidebar-section">
-      <div class="glitch-box">
-        <span class="glitch-text">CBLOCK<br>2K</span>
-        <span class="glitch-sub">// magazine digital</span>
+  <aside class="sr">
+    <div class="badge">
+      <img src="cblock2026.jpg" alt="CBLOCK2K">
+      <span class="bsub">// arquivo visual</span>
+    </div>
+    <div class="ss">
+      <span class="lbl">Tags</span>
+      <div class="tags">
+        <span class="tag hot">Skate</span><span class="tag">Moda</span>
+        <span class="tag hot">Rua</span><span class="tag">VHS</span>
+        <span class="tag hot">Digital</span><span class="tag">Core</span>
+        <span class="tag">35mm</span><span class="tag">Flash</span>
+        <span class="tag">Noite</span><span class="tag">Street</span>
       </div>
     </div>
-
-    <div class="sidebar-section">
-      <span class="sidebar-label">Tags</span>
-      <div class="tag-cloud">
-        <span class="tag hot">Skate</span>
-        <span class="tag hot">Trap</span>
-        <span class="tag">Rap</span>
-        <span class="tag">Moda</span>
-        <span class="tag">Rua</span>
-        <span class="tag hot">Digital</span>
-        <span class="tag">VHS</span>
-        <span class="tag">Câmera</span>
-        <span class="tag">Drop</span>
-        <span class="tag">Underground</span>
-        <span class="tag">Core</span>
-        <span class="tag">Street</span>
+    <div class="ss">
+      <span class="lbl">Arquivo</span>
+      <div style="font-size:.55rem;line-height:2.1;letter-spacing:.1em;color:#252040;">
+        <div><span class="dot" style="display:inline-block;margin-right:5px;"></span><span style="color:var(--violet)">LIVE</span></div>
+        <div id="sr-count">00 FOTOS</div>
+        <div>VER: 2.1.0</div>
       </div>
     </div>
-
-    <div class="sidebar-section">
-      <span class="sidebar-label">Status</span>
-      <div style="font-size:0.6rem; color:#333; line-height:2; letter-spacing:0.1em;">
-        <div><span class="status-dot"></span>LIVE</div>
-        <div style="color:#222;">SYS: ONLINE</div>
-        <div style="color:#222;">VER: 2.0.0</div>
-      </div>
-    </div>
-
-    <div class="sidebar-section">
-      <span class="sidebar-label">Siga-nos</span>
-      <ul class="sidebar-links">
+    <div class="ss">
+      <span class="lbl">Siga-nos</span>
+      <ul class="rlk">
         <li><a href="#">@cblock2k</a></li>
         <li><a href="#">youtube</a></li>
         <li><a href="#">instagram</a></li>
         <li><a href="#">tiktok</a></li>
       </ul>
     </div>
-
   </aside>
-
 </div>
 
-<!-- ======= FOOTER ======= -->
 <footer>
-  <div class="footer-logo">CB<span>LOCK</span>2K</div>
-  <div class="footer-copy">© 2025 CBLOCK2K // TODOS OS DIREITOS RESERVADOS</div>
-  <div class="footer-links">
-    <a href="#">CONTATO</a>
-    <a href="#">PRIVACIDADE</a>
-    <a href="#">SOBRE</a>
-  </div>
+  <div class="fl">CB<em>LOCK</em>2K</div>
+  <div class="fc">© 2026 CBLOCK2K // TODOS OS DIREITOS RESERVADOS</div>
+  <div class="fls"><a href="#">CONTATO</a><a href="#">PRIVACIDADE</a><a href="#">SOBRE</a></div>
 </footer>
 
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lightbox">
+  <button class="lb-close" onclick="closeLB()">✕</button>
+  <div class="lb-inner">
+    <div class="lb-img-wrap" id="lb-img-wrap">
+      <!-- content injected by JS -->
+    </div>
+    <div class="lb-caption">
+      <h3 id="lb-title">—</h3>
+      <p id="lb-sub">—</p>
+    </div>
+    <div class="lb-nav">
+      <button class="lb-btn" onclick="navLB(-1)">◄ ANTERIOR</button>
+      <button class="lb-btn" onclick="navLB(1)">PRÓXIMO ►</button>
+    </div>
+  </div>
+</div>
+
 <script>
-  // Live date
-  function updateDate() {
-    const d = new Date();
-    const dd = String(d.getDate()).padStart(2,'0');
-    const mm = String(d.getMonth()+1).padStart(2,'0');
-    const yyyy = d.getFullYear();
-    document.getElementById('live-date').textContent = `${dd}.${mm}.${yyyy}`;
+/* DATE */
+(function(){const d=new Date(),p=n=>String(n).padStart(2,'0');document.getElementById('live-date').textContent=`${p(d.getDate())}.${p(d.getMonth()+1)}.${d.getFullYear()}`;})();
+
+/* PHOTO COUNT */
+function updateCount(){
+  const items=document.querySelectorAll('.photo-item');
+  const n=String(items.length).padStart(2,'0');
+  const el=document.getElementById('photo-count');
+  if(el){el.innerHTML=`${n}<span>FOTOS // 2K26</span>`;}
+  const sr=document.getElementById('sr-count');
+  if(sr){sr.textContent=`${n} FOTOS`;}
+}
+updateCount();
+
+/* CATEGORY FILTER */
+document.querySelectorAll('.cat-btn').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+    this.classList.add('active');
+    const cat=this.dataset.cat;
+    document.querySelectorAll('.photo-item').forEach(item=>{
+      if(cat==='all'||item.dataset.cat===cat){item.style.display='';}
+      else{item.style.display='none';}
+    });
+  });
+});
+
+/* LIGHTBOX */
+let currentIndex=0;
+function getVisible(){return [...document.querySelectorAll('.photo-item')].filter(el=>el.style.display!=='none');}
+
+function openLB(el){
+  const items=getVisible();
+  currentIndex=items.indexOf(el);
+  renderLB(items[currentIndex]);
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function renderLB(el){
+  const wrap=document.getElementById('lb-img-wrap');
+  const img=el.querySelector('img');
+  if(img){
+    wrap.innerHTML=`<img src="${img.src}" alt="${el.dataset.title||''}">`;
+  } else {
+    const num=el.querySelector('.ph-num')?.textContent||'';
+    const cat=el.querySelector('.ph-cat')?.textContent||'';
+    wrap.innerHTML=`<div class="lb-ph"><div class="lb-ph-num">${num}</div><div class="lb-ph-lbl">${cat}</div></div>`;
   }
-  updateDate();
+  document.getElementById('lb-title').textContent=el.dataset.title||'—';
+  document.getElementById('lb-sub').textContent=el.dataset.sub||'—';
+}
 
-  // ── CANVAS VISUALIZER ──────────────────────────────────────────
-  const canvas = document.getElementById('viz-canvas');
-  const ctx = canvas.getContext('2d');
+function closeLB(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow='';
+}
 
-  const YELLOW = '#d4ff00';
-  const RED    = '#cc1100';
-  const DIM    = '#1a1a1a';
+function navLB(dir){
+  const items=getVisible();
+  currentIndex=(currentIndex+dir+items.length)%items.length;
+  renderLB(items[currentIndex]);
+}
 
-  let W, H;
-  function resize() {
-    W = canvas.width  = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  // waveform points
-  const N = 120;
-  const pts = Array.from({length: N}, (_, i) => ({ x: i / (N-1), phase: Math.random() * Math.PI * 2, speed: 0.4 + Math.random() * 0.8, amp: 0.15 + Math.random() * 0.35 }));
-
-  // scanline bars (random flicker)
-  const bars = Array.from({length: 6}, () => ({
-    x: Math.random(),
-    w: 0.01 + Math.random() * 0.04,
-    alpha: 0,
-    target: 0,
-    timer: 0
-  }));
-
-  // glitch character stream
-  const glyphs = '01アイウエオカキクケコABCDEFXYZ#@!%&';
-  const cols = 28;
-  const drops = Array.from({length: cols}, () => ({ y: Math.random(), speed: 0.003 + Math.random() * 0.007, alpha: 0.03 + Math.random() * 0.08 }));
-
-  let t = 0;
-
-  function draw() {
-    t += 0.016;
-    ctx.clearRect(0, 0, W, H);
-
-    // background
-    ctx.fillStyle = '#050505';
-    ctx.fillRect(0, 0, W, H);
-
-    // character rain (very faint)
-    const colW = W / cols;
-    ctx.font = `${Math.floor(colW * 0.7)}px 'Share Tech Mono', monospace`;
-    drops.forEach((d, i) => {
-      d.y += d.speed;
-      if (d.y > 1) d.y = 0;
-      const ch = glyphs[Math.floor(Math.random() * glyphs.length)];
-      const x = i * colW + colW * 0.1;
-      const y = d.y * H;
-      ctx.fillStyle = `rgba(212,255,0,${d.alpha})`;
-      ctx.fillText(ch, x, y);
-    });
-
-    // horizontal grid lines
-    ctx.strokeStyle = DIM;
-    ctx.lineWidth = 1;
-    for (let r = 0; r < 4; r++) {
-      const y = (r + 1) * H / 5;
-      ctx.beginPath();
-      ctx.moveTo(0, y);
-      ctx.lineTo(W, y);
-      ctx.stroke();
-    }
-
-    // vertical grid lines
-    for (let c = 1; c < 8; c++) {
-      const x = c * W / 8;
-      ctx.beginPath();
-      ctx.moveTo(x, 0);
-      ctx.lineTo(x, H);
-      ctx.stroke();
-    }
-
-    // waveform — main
-    ctx.beginPath();
-    ctx.strokeStyle = YELLOW;
-    ctx.lineWidth = 1.5;
-    ctx.shadowColor = YELLOW;
-    ctx.shadowBlur = 6;
-    pts.forEach((p, i) => {
-      const x = p.x * W;
-      const wave = Math.sin(p.phase + t * p.speed) * p.amp;
-      const y = H / 2 + wave * H;
-      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-    });
-    ctx.stroke();
-    ctx.shadowBlur = 0;
-
-    // waveform — red ghost offset
-    ctx.beginPath();
-    ctx.strokeStyle = `rgba(204,17,0,0.35)`;
-    ctx.lineWidth = 1;
-    pts.forEach((p, i) => {
-      const x = p.x * W + 3;
-      const wave = Math.sin(p.phase + t * p.speed * 0.97 + 0.1) * p.amp;
-      const y = H / 2 + wave * H;
-      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-    });
-    ctx.stroke();
-
-    // vertical signal bars (EQ style) at edges
-    const barCount = 18;
-    const bw = 3;
-    const gap = 2;
-    for (let b = 0; b < barCount; b++) {
-      const heightRatio = 0.1 + 0.6 * Math.abs(Math.sin(b * 0.7 + t * 1.2));
-      const bh = heightRatio * H * 0.7;
-      const x = b * (bw + gap) + 6;
-      const y = (H - bh) / 2;
-      ctx.fillStyle = b % 3 === 0 ? `rgba(204,17,0,0.5)` : `rgba(212,255,0,0.25)`;
-      ctx.fillRect(x, y, bw, bh);
-    }
-    // mirror right side
-    for (let b = 0; b < barCount; b++) {
-      const heightRatio = 0.1 + 0.6 * Math.abs(Math.sin(b * 0.5 + t * 0.9 + 1));
-      const bh = heightRatio * H * 0.7;
-      const x = W - b * (bw + gap) - 6 - bw;
-      const y = (H - bh) / 2;
-      ctx.fillStyle = b % 4 === 0 ? `rgba(204,17,0,0.4)` : `rgba(212,255,0,0.18)`;
-      ctx.fillRect(x, y, bw, bh);
-    }
-
-    // random glitch flash bars
-    bars.forEach(bar => {
-      bar.timer -= 0.016;
-      if (bar.timer < 0) {
-        bar.timer = 0.5 + Math.random() * 3;
-        bar.x = Math.random();
-        bar.w = 0.005 + Math.random() * 0.03;
-        bar.target = Math.random() > 0.5 ? 0.06 : 0;
-      }
-      bar.alpha += (bar.target - bar.alpha) * 0.1;
-      if (bar.alpha > 0.005) {
-        ctx.fillStyle = `rgba(212,255,0,${bar.alpha})`;
-        ctx.fillRect(bar.x * W, 0, bar.w * W, H);
-      }
-    });
-
-    // center crosshair dot
-    ctx.beginPath();
-    ctx.arc(W / 2, H / 2, 2, 0, Math.PI * 2);
-    ctx.fillStyle = RED;
-    ctx.fill();
-
-    requestAnimationFrame(draw);
-  }
-  draw();
+document.getElementById('lightbox').addEventListener('click',function(e){
+  if(e.target===this)closeLB();
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape')closeLB();
+  if(e.key==='ArrowLeft')navLB(-1);
+  if(e.key==='ArrowRight')navLB(1);
+});
 </script>
-
 </body>
 </html>
